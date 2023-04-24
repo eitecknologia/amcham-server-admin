@@ -1,0 +1,32 @@
+{
+  "name": "amcham-server-admin",
+  "version": "1.0.0",
+  "description": "Backend server for admin panel",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node build/app.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q build/app.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eitecknologia/amcham-server-admin.git"
+  },
+  "author": "Christian Guaman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eitecknologia/amcham-server-admin/issues"
+  },
+  "homepage": "https://github.com/eitecknologia/amcham-server-admin#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.16.0",
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.4"
+  }
+}
