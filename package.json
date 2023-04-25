@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node build/app.js",
+    "start": "tsc && node build/app.js",
     "dev": "ts-node-dev --files src/app.ts"
   },
   "repository": {
