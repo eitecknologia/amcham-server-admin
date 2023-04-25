@@ -8,8 +8,8 @@ const authRouter: Router = Router();
 
 /* Service - Login */
 authRouter.post('/login', [
-    // check('email', 'Ingrese un correo válido').trim().isEmail(),
-    // check('password', 'La contraseña es obligatoria').trim().notEmpty(),
+    check('email', 'Ingrese un correo válido').trim().isEmail(),
+    check('password', 'La contraseña es obligatoria').trim().notEmpty(),
 ], loginUser);
 
 // Route - create user - POST - /api/user/create
