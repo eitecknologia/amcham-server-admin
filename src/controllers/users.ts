@@ -97,7 +97,7 @@ export const updateUserInfo = async (request: Request, response: Response) => {
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     // Get user id from params
-    const { user_id } = req.user;
+    const { user_id } = req.params;
 
     // Delete user by id
     await User.destroy({ where: { user_id } });

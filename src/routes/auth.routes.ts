@@ -3,13 +3,14 @@ import { check } from "express-validator";
 import { loginUser, recoverPassword, registerUser, setNewPassword } from '../controllers/auth';
 import { validateJwt } from "../middleware/jwt-validate";
 import { isAdminUser } from "../middleware/roles-validate";
-
+import { fieldsValidate } from "../middleware/fields-validate";
 const authRouter: Router = Router();
 
 /* Service - Login */
 authRouter.post('/login', [
     check('email', 'Ingrese un correo válido').trim().isEmail(),
     check('password', 'La contraseña es obligatoria').trim().notEmpty(),
+    fieldsValidate
 ], loginUser);
 
 // Route - create user - POST - /api/user/create
