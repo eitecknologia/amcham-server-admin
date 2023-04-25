@@ -42,7 +42,7 @@ const User = sequelize.define<UserAttributes>("User", {
     unique: true,
   },
   password: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
   is_admin: {

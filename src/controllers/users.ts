@@ -1,35 +1,6 @@
 import { Request, Response } from "express";
 import { User, UserAttributes } from "../models";
 
-// Create user function
-export const createUser = async (request: Request, response: Response) => {
-  try {
-    const { name, last_name, email, password }: UserAttributes = request.body;
-
-    const user = await User.create({
-      name,
-      last_name,
-      email,
-      password
-    }
-    );
-    
-    return response.status(201).json({
-      ok: true,
-      msg: "User Created",
-      user,
-    });
-  } catch (error) {
-    return response.status(500).json({
-      ok: false,
-      msg: "Internal Server Error",
-      error,
-    });
-
-  }
-};
-
-
 /* Get all users function*/
 export const getAllUsers = async (request: Request, response: Response) => {
   try {
@@ -94,7 +65,7 @@ export const getMyUserInfo = async (request: Request, response: Response) => {
 };
 
 // Update user info function
-export const updateUser = async (request: Request, response: Response) => {
+export const updateUserInfo = async (request: Request, response: Response) => {
   try {
     let { name, last_name, email, is_active }: UserAttributes = request.body;
     const { user_id } = request.user;
