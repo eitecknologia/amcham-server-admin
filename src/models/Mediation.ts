@@ -16,6 +16,7 @@ interface MediationAttributes
   to_range: number;
   base: number;
   excess_percentage: number;
+  can_delete: boolean;
   last_update: Date;
 }
 
@@ -40,6 +41,10 @@ const Mediation = sequelize.define<MediationAttributes>("Mediation", {
   excess_percentage: {
     type: DataTypes.FLOAT(2, 2),
     allowNull: false,
+  },
+  can_delete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
   last_update: {
     type: DataTypes.DATE,

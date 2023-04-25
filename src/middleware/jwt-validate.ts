@@ -1,19 +1,20 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from '../models';
+
 import jwt = require("jsonwebtoken");
 
 interface jwtPayload {
     id: string
 }
 
-export const validateJwt = async (req: Request, res: Response, next: NextFunction) => {
-    let token = req.get('Authorization');
+export const validateJwt = async (request: Request, response: Response, next: NextFunction) => {
+    let token = request.get('Authorization');
     token = (token) ? token.split(' ')[1] : token;
 
     if (!token) {
-        return res.status(401).json({
+        return response.status(401).json({
             ok: false,
-            msg: "No se encontró un token"
+            msg: "Doesn't found token"
         });
     }
 
@@ -22,34 +23,34 @@ export const validateJwt = async (req: Request, res: Response, next: NextFunctio
         
 
         /* Search if the user exists */
-        const user = await User.findOne({ where: { userid: id } });
+        const user = await User.findOne({ where: { user_id: id } });
         if (!user) {
-            return res.status(400).json({
+            return response.status(400).json({
                 ok: false,
                 msg: `Usuario o Password incorrecto`
             });
         }
 
-        if (!user.isactive) {
-            return res.status(400).json({
+        if (!user.is_active) {
+            return response.status(400).json({
                 ok: false,
-                msg: `Usuario no disponible`
+                msg: `Usuario inactivo`
             });
         }
 
-        req.user = {
-            userid: user.userid,
+        request.user = {
+            user_id: user.user_id,
             name: user.name,
-            lastname: user.lastname,
-            roleid: user.roleid,
-            isAdministrative: user.isAdministrative
+            last_name: user.last_name,
+            is_admin: user.is_admin,
+            is_active: user.is_active
         }
 
         return next();
     } catch (error) {
-        return res.status(401).json({
+        return response.status(401).json({
             ok: false,
-            msg: "Token no válido"
+            msg: "Valid token"
         });
     }
 }

@@ -64,7 +64,7 @@ export const getAllUsers = async (request: Request, response: Response) => {
 // Get user info by id when user is logged
 export const getMyUserInfo = async (request: Request, response: Response) => {
   try {
-    const { user_id } = request.params;
+    const { user_id } = request.user;
 
     const user = await User.findOne({
       attributes: [
@@ -97,7 +97,7 @@ export const getMyUserInfo = async (request: Request, response: Response) => {
 export const updateUser = async (request: Request, response: Response) => {
   try {
     let { name, last_name, email, is_active }: UserAttributes = request.body;
-    const { user_id } = request.params;
+    const { user_id } = request.user;
 
     await User.update(
       {
@@ -126,7 +126,7 @@ export const updateUser = async (request: Request, response: Response) => {
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     // Get user id from params
-    const { user_id } = req.params;
+    const { user_id } = req.user;
 
     // Delete user by id
     await User.destroy({ where: { user_id } });

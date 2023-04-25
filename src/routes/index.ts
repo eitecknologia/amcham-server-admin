@@ -1,5 +1,7 @@
-import testRouter from './user.routes';
+import testRouter from './testServer.routes';
+import userRouter from './user.routes';
 
 export {
-    testRouter
+    testRouter,
+    userRouter
 }

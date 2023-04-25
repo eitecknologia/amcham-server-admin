@@ -1,5 +1,5 @@
 import express, { Express, Response } from "express";
-import { testRouter } from "../routes/index";
+import { testRouter, userRouter } from "../routes/index";
 import morgan = require("morgan");
 import sequelize from "../database/config";
 import cors from "cors";
@@ -7,9 +7,10 @@ import cors from "cors";
 export class Server {
   public app: Express;
   public port: string;
-  public prefix = "/api/";
+  // public prefix = "/api/";
   public paths: {
     testServer: string;
+    user: string;
   };
 
   constructor() {
@@ -17,6 +18,7 @@ export class Server {
     this.port = process.env.PORT || "3000";
     this.paths = {
       testServer: "/",
+      user: "/user",
     };
 
     /* Middleware */
@@ -31,7 +33,7 @@ export class Server {
 
   middleware() {
     /* Options for cors middleware */
-    this.app.use(cors);
+    this.app.use(cors());
 
     /* Body Parse */
     this.app.use(express.json());
@@ -44,6 +46,7 @@ export class Server {
   routes() {
     /* Defined Routes */
     this.app.use(this.paths.testServer, testRouter);
+    this.app.use(this.paths.user, userRouter);
 
     /* Service not found - 404 */
     this.app.use((_req, res: Response) => {
@@ -59,7 +62,7 @@ export class Server {
     try {
       const dbConnection = async () => {
         await Promise.all([
-          /* await sequelize.sync(); - Use when the DB has been changed */
+          /* Use when the DB has been changed careful can lost data*/
           // await sequelize.sync(),
           sequelize.authenticate(),
         ]);
@@ -73,7 +76,7 @@ export class Server {
 
   listen() {
     this.app.listen(this.port, () => {
-      console.log(`Port: `, this.port);
+      console.log(`Server listening at port: `, this.port);
     });
   }
 }
