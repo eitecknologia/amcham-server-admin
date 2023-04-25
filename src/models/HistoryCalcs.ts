@@ -62,4 +62,4 @@ const HistoryCalcs = sequelize.define<HistoryCalcsAttributes>("HistoryCalcs", {
   },
 });
 
-export default HistoryCalcs;
+export { HistoryCalcs, HistoryCalcsAttributes}

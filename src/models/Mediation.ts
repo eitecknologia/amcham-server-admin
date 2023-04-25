@@ -47,4 +47,4 @@ const Mediation = sequelize.define<MediationAttributes>("Mediation", {
   },
 });
 
-export default Mediation;
+export { Mediation, MediationAttributes}

@@ -51,4 +51,4 @@ const ArbitrationThreeReferee =
     }
   );
 
-export default ArbitrationThreeReferee;
+export { ArbitrationThreeReferee, ArbitrationThreeRefereeAttributes}

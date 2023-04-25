@@ -50,4 +50,4 @@ const ArbitrationOneReferee = sequelize.define<ArbitrationOneRefereeAttributes>(
   }
 );
 
-export default ArbitrationOneReferee;
+export { ArbitrationOneReferee, ArbitrationOneRefereeAttributes}

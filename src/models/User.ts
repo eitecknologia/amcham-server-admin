@@ -3,6 +3,7 @@ import {
   InferCreationAttributes,
   InferAttributes,
   Model,
+  CreationOptional
 } from "sequelize";
 import sequelize from "../database/config";
 
@@ -11,13 +12,14 @@ interface UserAttributes
     InferAttributes<UserAttributes>,
     InferCreationAttributes<UserAttributes>
   > {
-  user_id: number;
+  user_id: CreationOptional<number>;
   name: string;
   last_name: string;
   email: string;
   password: string;
-  is_active: boolean;
-  createdAt?: Date;
+  is_admin: CreationOptional<boolean>;
+  is_active: CreationOptional<boolean>;
+  createdAt: CreationOptional<Date>;
 }
 
 const User = sequelize.define<UserAttributes>("User", {
@@ -43,6 +45,10 @@ const User = sequelize.define<UserAttributes>("User", {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
+  is_admin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   is_active: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
@@ -53,4 +59,4 @@ const User = sequelize.define<UserAttributes>("User", {
   },
 });
 
-export default User;
+export { User, UserAttributes}
