@@ -8,6 +8,8 @@ import {
   deleteUser,
 } from "../controllers/users";
 import { check } from "express-validator";
+import { fieldsValidate } from "../middleware/fields-validate";
+import { existUser } from "../helpers/db-helpers";
 
 const userRouter: Router = Router();
 
@@ -19,14 +21,24 @@ userRouter.get("/get_my_info", [validateJwt], getMyUserInfo);
 
 // Route - update user - PUT - /api/user/update/:user_id
 userRouter.put(
-  "/update/:user_id",
+  "/update/",
   [
     validateJwt,
-    check("user_id", "El id del usuario es obligatorio").trim().notEmpty(),
-    check("name", "El nombre es obligatorio").trim().notEmpty(),
-    check("last_name", "El apellido es obligatorio").trim().notEmpty(),
-    check("email", "Ingrese un correo válido").trim().isEmail(),
-    check("is_active", "El estado es obligatorio").trim().notEmpty(),
+    check("user_id", "El id del usuario es incorrecto")
+      .optional()
+      .trim()
+      .notEmpty(),
+    check("user_id", "El usuario no existe").custom(existUser),
+    check("name", "El nombre es string")
+      .optional()
+      .trim()
+      .optional()
+      .notEmpty(),
+    check("last_name", "El apellido es string").optional().trim().notEmpty(),
+    check("email", "Ingrese un correo válido").optional().trim().isEmail(),
+    check("is_active", "El estado es opcional").optional().trim().notEmpty(),
+
+    fieldsValidate,
   ],
   updateUserInfo
 );
@@ -38,6 +50,8 @@ userRouter.delete(
     validateJwt,
     isAdminUser,
     check("user_id", "El id del usuario es obligatorio").trim().notEmpty(),
+    check("user_id", "El usuario no existe").custom(existUser),
+    fieldsValidate,
   ],
   deleteUser
 );

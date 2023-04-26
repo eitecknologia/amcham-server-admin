@@ -8,7 +8,7 @@ import { recoverPasswordMsg } from "../helpers/msgEmail";
 
 import jwt from 'jsonwebtoken';
 /* Login User */
-export const loginUser = async (request: Request, response: Response) => {
+export const  loginUser = async (request: Request, response: Response) => {
     try {
 
         let { email, password } = request.body;

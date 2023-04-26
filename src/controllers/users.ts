@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { User, UserAttributes } from "../models";
+import { allowDeactivate, existUser } from "../helpers/db-helpers";
 
 /* Get all users function*/
 export const getAllUsers = async (request: Request, response: Response) => {
@@ -67,18 +68,39 @@ export const getMyUserInfo = async (request: Request, response: Response) => {
 // Update user info function
 export const updateUserInfo = async (request: Request, response: Response) => {
   try {
-    let { name, last_name, email, is_active }: UserAttributes = request.body;
-    const { user_id } = request.user;
+    const user_id =
+      request.body.user_id !== undefined
+        ? request.body.user_id
+        : request.user.user_id;
+    const updates: Partial<UserAttributes> = {}; // Create an empty object to hold the updates
 
-    await User.update(
-      {
-        name,
-        last_name,
-        email,
-        is_active,
-      },
-      { where: { user_id } }
-    );
+    if (request.body.name !== undefined) {
+      updates.name = request.body.name;
+    }
+
+    if (request.body.last_name !== undefined) {
+      updates.last_name = request.body.last_name;
+    }
+
+    if (request.body.email !== undefined) {
+      updates.email = request.body.email;
+    }
+
+    if (request.body.is_active !== undefined) {
+      if (
+        (await allowDeactivate(request.user.user_id)) &&
+        request.user.user_id !== user_id
+      ) {
+        updates.is_active = request.body.is_active;
+      } else {
+        return response.status(500).json({
+          ok: false,
+          msg: "You can't deactivate this user.",
+        });
+      }
+    }
+
+    await User.update(updates, { where: { user_id } });
 
     return response.status(200).json({
       ok: true,
@@ -98,6 +120,7 @@ export const deleteUser = async (req: Request, res: Response) => {
   try {
     // Get user id from params
     const { user_id } = req.params;
+    console.log(user_id);
 
     // Delete user by id
     await User.destroy({ where: { user_id } });
@@ -107,6 +130,7 @@ export const deleteUser = async (req: Request, res: Response) => {
       msg: "User Deleted",
       user_id,
     });
+
   } catch (error) {
     return res.status(500).json({
       ok: false,
