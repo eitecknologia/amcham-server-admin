@@ -1,10 +1,8 @@
 import express, { Express, Response } from "express";
-import { authRouter, testRouter, userRouter } from "../routes/index";
+import { authRouter, testRouter, userRouter, calcsRouter } from "../routes/index";
 import morgan = require("morgan");
 import sequelize from "../database/config";
 import cors from "cors";
-
-import { createAdmin } from "../helpers/createAdmin";
 
 export class Server {
   public app: Express;
@@ -14,6 +12,7 @@ export class Server {
     testServer: string;
     user: string;
     auth: string;
+    calcs: string;
   };
 
   constructor() {
@@ -23,6 +22,7 @@ export class Server {
       testServer: "/",
       user: "/user",
       auth: "/auth",
+      calcs: "/calcs",
     };
 
     /* Middleware */
@@ -52,6 +52,7 @@ export class Server {
     this.app.use(this.paths.testServer, testRouter);
     this.app.use(this.paths.user, userRouter);
     this.app.use(this.paths.auth, authRouter);
+    this.app.use(this.paths.calcs, calcsRouter);
 
     /* Service not found - 404 */
     this.app.use((_req, res: Response) => {
@@ -76,7 +77,7 @@ export class Server {
       console.log("Connection has been established successfully.");
       
       // Create admin user if not exists
-      await createAdmin();
+      // await createAdmin();
     } catch (error) {
       console.error("Unable to connect to the database:", error);
     }

@@ -1,11 +1,11 @@
 /* Images used to send emails */
 
-const logoEnterpise = `https://res.cloudinary.com/db6g5aoec/image/upload/v1682021883/eiteck/LDC/emailImages/ldcIcon_bdm6je.png`;
+const logoCompany = `https://res.cloudinary.com/db6g5aoec/image/upload/v1682021883/eiteck/LDC/emailImages/ldcIcon_bdm6je.png`;
 const logoEmail = `https://res.cloudinary.com/db6g5aoec/image/upload/v1657139654/eiteck/factorybike/EmailAssets/logoEmail_pkdh3v.png`;
 
 /* Send a message to email, to recover password */
 export const recoverPasswordMsg = (pathEmail: string) => {
-    return (`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="font-family:arial, 'helvetica neue', helvetica, sans-serif"> 
        <head> 
         <meta charset="UTF-8"> 
@@ -13,7 +13,7 @@ export const recoverPasswordMsg = (pathEmail: string) => {
         <meta name="x-apple-disable-message-reformatting"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <meta content="telephone=no" name="format-detection"> 
-        <title>Recuperar Contrasea</title><!--[if gte mso 9]><style>sup { font-size: 100% !important; }</style><![endif]--> 
+        <title>Recuperar Contraseña</title><!--[if gte mso 9]><style>sup { font-size: 100% !important; }</style><![endif]--> 
         <style type="text/css">
       #outlook a {
         padding:0;
@@ -62,7 +62,7 @@ export const recoverPasswordMsg = (pathEmail: string) => {
                         <td align="center" valign="top" style="padding:0;Margin:0;width:580px"> 
                          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                            <tr> 
-                            <td align="center" style="padding:0;Margin:0;font-size:0px"><img class="adapt-img" src="${logoEnterpise}" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="580"></td> 
+                            <td align="center" style="padding:0;Margin:0;font-size:0px"><img class="adapt-img" src="${logoCompany}" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="580"></td> 
                            </tr> 
                            <tr> 
                             <td align="center" style="padding:20px;Margin:0;font-size:0"> 
@@ -136,5 +136,5 @@ export const recoverPasswordMsg = (pathEmail: string) => {
            </tr> 
          </table> 
         </div>  
-       </body>`)
+       </body>`;
 };
