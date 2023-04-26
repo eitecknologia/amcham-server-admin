@@ -3,6 +3,7 @@ import {
   InferCreationAttributes,
   InferAttributes,
   Model,
+  CreationOptional
 } from "sequelize";
 import sequelize from "../database/config";
 
@@ -11,7 +12,7 @@ interface HistoryCalcsAttributes
     InferAttributes<HistoryCalcsAttributes>,
     InferCreationAttributes<HistoryCalcsAttributes>
   > {
-  history_calcs_id: number;
+  history_calcs_id: CreationOptional<number>;
   name: string;
   email: string;
   company_name: string;
@@ -19,7 +20,7 @@ interface HistoryCalcsAttributes
   calculation_type: string;
   consulted_amount: number;
   result: number;
-  date: Date;
+  date: CreationOptional<Date>;
 }
 
 const HistoryCalcs = sequelize.define<HistoryCalcsAttributes>("HistoryCalcs", {
