@@ -76,8 +76,8 @@ export const registerUser = async (request: Request, response: Response) => {
         });
 
         if (existUser) {
-            return response.status(201).json({
-                ok: true,
+            return response.status(400).json({
+                ok: false,
                 msg: "Ya existe un usuario con este correo"
             })
         }
@@ -151,23 +151,15 @@ export const recoverPassword = async (req: Request, res: Response) => {
 
 /* Set new recovered password */
 export const setNewPassword = async (request: Request, response: Response) => {
-    let token = request.get('Authorization');
-    token = (token) ? token.split(' ')[1] : token;
-
-    interface jwtPayload {
-        id: string
-    }
     try {
         let { password } = request.body;
-
-        const { id } = jwt.verify(`${token}`, `${process.env.TOKEN_SEED}`) as jwtPayload;
 
         const salt = bcrypt.genSaltSync();
         password = bcrypt.hashSync(password, salt);
 
         await User.update({
             password
-        }, { where: { user_id: id } })
+        }, { where: { user_id: request.user.user_id } })
 
         return response.status(200).json({
             ok: true,

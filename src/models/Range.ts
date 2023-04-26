@@ -3,28 +3,33 @@ import {
   InferCreationAttributes,
   InferAttributes,
   Model,
+  CreationOptional
 } from "sequelize";
 import sequelize from "../database/config";
 
-interface MediationAttributes
+interface RangeAttributes
   extends Model<
-    InferAttributes<MediationAttributes>,
-    InferCreationAttributes<MediationAttributes>
+    InferAttributes<RangeAttributes>,
+    InferCreationAttributes<RangeAttributes>
   > {
-  mediation_id: number;
+  range_id: CreationOptional<number>;
+  range_type: string;
   from_range: number;
   to_range: number;
   base: number;
   excess_percentage: number;
   can_delete: boolean;
-  last_update: Date;
 }
 
-const Mediation = sequelize.define<MediationAttributes>("Mediation", {
-  mediation_id: {
+const Range = sequelize.define<RangeAttributes>("Range", {
+  range_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+  },
+  range_type: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
   },
   from_range: {
     type: DataTypes.FLOAT(10, 2),
@@ -45,11 +50,7 @@ const Mediation = sequelize.define<MediationAttributes>("Mediation", {
   can_delete: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-  },
-  last_update: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
+  }
 });
 
-export { Mediation, MediationAttributes}
+export { Range, RangeAttributes}

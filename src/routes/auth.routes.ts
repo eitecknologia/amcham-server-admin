@@ -41,7 +41,6 @@ authRouter.post('/password_send_email', [
 /* Service - Set new password */
 authRouter.post('/password_set_new', [
     validateJwt,
-    check('token', 'Token Obligatorio').notEmpty(),
     check('password', 'El password debe contener al menos 6 caracteres').isLength({ min: 6 }),
     fieldsValidate
 ], setNewPassword);

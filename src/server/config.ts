@@ -1,5 +1,5 @@
 import express, { Express, Response } from "express";
-import { authRouter, testRouter, userRouter, calcsRouter } from "../routes/index";
+import { authRouter, testRouter, userRouter, calcsRouter, rangesRouter } from "../routes/index";
 import morgan = require("morgan");
 import sequelize from "../database/config";
 import cors from "cors";
@@ -13,6 +13,7 @@ export class Server {
     user: string;
     auth: string;
     calcs: string;
+    ranges: string;
   };
 
   constructor() {
@@ -23,6 +24,7 @@ export class Server {
       user: "/user",
       auth: "/auth",
       calcs: "/calcs",
+      ranges: "/ranges",
     };
 
     /* Middleware */
@@ -53,6 +55,7 @@ export class Server {
     this.app.use(this.paths.user, userRouter);
     this.app.use(this.paths.auth, authRouter);
     this.app.use(this.paths.calcs, calcsRouter);
+    this.app.use(this.paths.ranges, rangesRouter);
 
     /* Service not found - 404 */
     this.app.use((_req, res: Response) => {

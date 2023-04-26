@@ -1,18 +1,10 @@
 import {User, UserAttributes} from "./User";
-import { Mediation, MediationAttributes } from "./Mediation";
-import { HistoryCalcs, HistoryCalcsAttributes } from "./HistoryCalcs";
-import { ArbitrationOneReferee, ArbitrationOneRefereeAttributes } from "./ArbitrationOneReferee";
-import { ArbitrationThreeReferee, ArbitrationThreeRefereeAttributes } from "./ArbitrationThreeReferees";
-
+import { Range, RangeAttributes } from "./Range";
+import { HistoryCalcs } from "./HistoryCalcs";
 export {
     User,
     UserAttributes,
-    Mediation,
-    MediationAttributes,
-    HistoryCalcs,
-    HistoryCalcsAttributes,
-    ArbitrationOneReferee,
-    ArbitrationOneRefereeAttributes,
-    ArbitrationThreeReferee,
-    ArbitrationThreeRefereeAttributes
+    Range,
+    RangeAttributes,
+    HistoryCalcs
 }

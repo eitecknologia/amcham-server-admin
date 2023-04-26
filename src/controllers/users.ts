@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User, UserAttributes } from "../models";
-import { allowDeactivate, existUser } from "../helpers/db-helpers";
+import { allowDeactivate } from "../helpers/db-helpers";
 
 /* Get all users function*/
 export const getAllUsers = async (request: Request, response: Response) => {
