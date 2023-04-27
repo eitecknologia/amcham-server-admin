@@ -200,12 +200,19 @@ export const setNewPassword = async (request: Request, response: Response) => {
     id: string;
   }
   try {
-    let { token, password } = request.body;
+    let { user_id, token, password } = request.body;
 
     const { id } = jwt.verify(
       `${token}`,
       `${process.env.TOKEN_SEED}`
-    ) as jwtPayload;
+    ) as jwtPayload;    
+
+    if (id != user_id) {
+      return response.status(401).json({
+        ok: false,
+        msg: `No autorizado`,
+      });
+    }
 
     const salt = bcrypt.genSaltSync();
     password = bcrypt.hashSync(password, salt);

@@ -41,7 +41,7 @@ authRouter.post(
   registerUser
 );
 
-/* Service - Recover pasword */
+/* Service - Recover password */
 authRouter.put(
   "/update_password",
   [
@@ -60,7 +60,9 @@ authRouter.put(
 /* Service - Recover password */
 authRouter.post(
   "/send_email_password",
-  [check("email", "Ingrese un correo válido").isEmail(), fieldsValidate],
+  [
+    check("user_id", "Id de usuario Obligatorio").notEmpty(),
+    check("email", "Ingrese un correo válido").isEmail(), fieldsValidate],
   recoverPassword
 );
 
