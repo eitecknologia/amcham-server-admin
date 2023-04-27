@@ -1,4 +1,3 @@
-/* Get All academies Function */
 import { Request, Response } from "express";
 import { HistoryCalcs } from "../models";
 import { infoPaginate, validatePaginateParams } from "../helpers/pagination";
@@ -44,7 +43,7 @@ export const getAllHistoryCalcs = async (
       ok: true,
       msg: "Historial de cálculos obtenido correctamente",
       info,
-      academies: calculations,
+      calcs: calculations,
     });
   } catch (error) {
     return response.status(500).json({
