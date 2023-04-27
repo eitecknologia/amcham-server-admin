@@ -185,6 +185,7 @@ export const recoverPassword = async (request: Request, response: Response) => {
       msg: `Solicitud de recuperación enviada a ${email}`,
     });
   } catch (error) {
+    console.log(error);
     return response.status(500).json({
       ok: false,
       msg: "Internal Server Error",
