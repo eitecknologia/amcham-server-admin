@@ -1,0 +1,290 @@
+[
+    {
+        "range_type": "MEDIATION",
+        "from_range": 0,
+        "to_range": 499.99,
+        "base": 60.48,
+        "excess_percentage": 0,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 500,
+        "to_range": 999.99,
+        "base": 80.64,
+        "excess_percentage": 0,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 1000,
+        "to_range": 1999.99,
+        "base": 100.8,
+        "excess_percentage": 0,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 2000,
+        "to_range": 3999.99,
+        "base": 120.96,
+        "excess_percentage": 0,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 4000,
+        "to_range": 7999.99,
+        "base": 120.96,
+        "excess_percentage": 2,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 8000,
+        "to_range": 15999.99,
+        "base": 194.88,
+        "excess_percentage": 1.75,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 16000,
+        "to_range": 31999.99,
+        "base": 329.28,
+        "excess_percentage": 1.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 32000,
+        "to_range": 63999.99,
+        "base": 575.68,
+        "excess_percentage": 1.25,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 64000,
+        "to_range": 127999.99,
+        "base": 1020.32,
+        "excess_percentage": 1.2,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 128000,
+        "to_range": 255999.99,
+        "base": 1831.2,
+        "excess_percentage": 1.15,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 256000,
+        "to_range": 511999.99,
+        "base": 3293.92,
+        "excess_percentage": 1.1,
+        "can_delete": false
+    },
+    {
+        "range_type": "MEDIATION",
+        "from_range": 512000,
+        "to_range": 1000000.99,
+        "base": 5969.6,
+        "excess_percentage": 1,
+        "can_delete": true
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 0,
+        "to_range": 31999.99,
+        "base": 1100,
+        "excess_percentage": 3.75,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 32000,
+        "to_range": 63999.99,
+        "base": 2300,
+        "excess_percentage": 3.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 64000,
+        "to_range": 127999.99,
+        "base": 3420,
+        "excess_percentage": 3.25,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 128000,
+        "to_range": 255999.99,
+        "base": 5500,
+        "excess_percentage": 3,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 256000,
+        "to_range": 511999.99,
+        "base": 9340,
+        "excess_percentage": 2.75,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 512000,
+        "to_range": 1023999.99,
+        "base": 16380,
+        "excess_percentage": 2.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 1024000,
+        "to_range": 2047999.99,
+        "base": 29180,
+        "excess_percentage": 2.25,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 2048000,
+        "to_range": 4095999.99,
+        "base": 52220,
+        "excess_percentage": 2,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 4096000,
+        "to_range": 8191999.99,
+        "base": 93180,
+        "excess_percentage": 1.75,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 8192000,
+        "to_range": 16383999.99,
+        "base": 164860,
+        "excess_percentage": 1.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 16384000,
+        "to_range": 32767999.99,
+        "base": 287740,
+        "excess_percentage": 1.25,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_ONE",
+        "from_range": 32768000,
+        "to_range": 40000000,
+        "base": 492540,
+        "excess_percentage": 1,
+        "can_delete": true
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 0,
+        "to_range": 31999.99,
+        "base": 2300,
+        "excess_percentage": 4.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 32000,
+        "to_range": 63999.99,
+        "base": 3740,
+        "excess_percentage": 4.25,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 64000,
+        "to_range": 127999.99,
+        "base": 5100,
+        "excess_percentage": 4,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 128000,
+        "to_range": 255999.99,
+        "base": 7660,
+        "excess_percentage": 3.75,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 256000,
+        "to_range": 511999.99,
+        "base": 12460,
+        "excess_percentage": 3.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 512000,
+        "to_range": 1023999.99,
+        "base": 21420,
+        "excess_percentage": 3.25,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 1024000,
+        "to_range": 2047999.99,
+        "base": 38060,
+        "excess_percentage": 3,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 2048000,
+        "to_range": 4095999.99,
+        "base": 68780,
+        "excess_percentage": 2.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 4096000,
+        "to_range": 8191999.99,
+        "base": 119980,
+        "excess_percentage": 2,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 8192000,
+        "to_range": 16383999.99,
+        "base": 201900,
+        "excess_percentage": 1.75,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 16384000,
+        "to_range": 32767999.99,
+        "base": 345260,
+        "excess_percentage": 1.5,
+        "can_delete": false
+    },
+    {
+        "range_type": "ARBITRATION_THREE",
+        "from_range": 32768000,
+        "to_range": 40000000,
+        "base": 591020,
+        "excess_percentage": 1.25,
+        "can_delete": true
+    }
+]

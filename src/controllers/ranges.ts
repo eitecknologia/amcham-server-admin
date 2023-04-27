@@ -83,6 +83,14 @@ export const createRange = async (request: Request, response: Response) => {
       }
     }
 
+    // Check if from range is greater than to range
+    if (Number(from_range) > Number(to_range)) {
+      return response.status(400).json({
+        ok: false,
+        msg: "Hasta no puede ser menor a desde en el rango",
+      });
+    }
+
     // Create Range
     const range = await Range.create({
       range_type,

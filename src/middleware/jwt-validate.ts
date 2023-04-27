@@ -56,7 +56,7 @@ export const validateJwt = async (
   } catch (error) {
     return response.status(401).json({
       ok: false,
-      msg: "Valid token",
+      msg: "Invalid token",
     });
   }
 };

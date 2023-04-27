@@ -78,7 +78,6 @@ export class Server {
       const dbConnection = async () => {
         await Promise.all([
           /* Use when the DB has been changed careful can lost data*/
-          // await sequelize.sync(),
           sequelize.authenticate(),
         ]);
       };
