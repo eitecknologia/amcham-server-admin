@@ -26,43 +26,54 @@ rangesRouter.get(
 
 /* Service - Create Range */
 rangesRouter.post(
-    "/create_range",
-    [
-        validateJwt,
-        check("range_type", "El tipo de rango es obligatorio").trim().notEmpty(),
-        check("range_type").custom(validateRangeType),
-        check("from_range", "El rango desde es obligatorio").trim().notEmpty(),
-        check("to_range", "El rango hasta es obligatorio").trim().notEmpty(),
-        check("base", "La base es obligatoria").trim().notEmpty(),
-        check("excess_percentage", "El porcentaje de exceso es obligatorio").trim().notEmpty(),
-        fieldsValidate,
-    ],
-    createRange
+  "/create_range",
+  [
+    validateJwt,
+    check("range_type", "El tipo de rango es obligatorio").trim().notEmpty(),
+    check("range_type").custom(validateRangeType),
+    check("from_range", "El rango desde es obligatorio").trim().notEmpty(),
+    check("to_range", "El rango hasta es obligatorio").trim().notEmpty(),
+    check("base", "La base es obligatoria").trim().notEmpty(),
+    check("excess_percentage", "El porcentaje de exceso es obligatorio")
+      .trim()
+      .notEmpty(),
+    fieldsValidate,
+  ],
+  createRange
 );
 
 /* Service - Update Range */
 rangesRouter.put(
-    "/update_range/:range_id",
-    [
-        validateJwt,
-        check("from_range", "El rango desde es obligatorio").optional().trim().notEmpty(),
-        check("to_range", "El rango hasta es obligatorio").optional().trim().notEmpty(),
-        check("base", "La base es obligatoria").optional().trim().notEmpty(),
-        check("excess_percentage", "El porcentaje de exceso es obligatorio").optional().trim().notEmpty(),
-        fieldsValidate,
-    ],
-    updateRange
+  "/update_range/:range_id",
+  [
+    validateJwt,
+    check("from_range", "El rango desde es obligatorio")
+      .optional()
+      .trim()
+      .notEmpty(),
+    check("to_range", "El rango hasta es obligatorio")
+      .optional()
+      .trim()
+      .notEmpty(),
+    check("base", "La base es obligatoria").optional().trim().notEmpty(),
+    check("excess_percentage", "El porcentaje de exceso es obligatorio")
+      .optional()
+      .trim()
+      .notEmpty(),
+    fieldsValidate,
+  ],
+  updateRange
 );
 
 /* Service - Delete Range */
 rangesRouter.delete(
-    "/delete_range/:range_id",
-    [
-        validateJwt,
-        check("range_id", "El id del rango es obligatorio").trim().notEmpty(),
-        fieldsValidate,
-    ],
-    deleteRange
+  "/delete_range/:range_id",
+  [
+    validateJwt,
+    check("range_id", "El id del rango es obligatorio").trim().notEmpty(),
+    fieldsValidate,
+  ],
+  deleteRange
 );
 
 export default rangesRouter;

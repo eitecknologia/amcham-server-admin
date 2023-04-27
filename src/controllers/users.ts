@@ -130,7 +130,6 @@ export const deleteUser = async (req: Request, res: Response) => {
       msg: "User Deleted",
       user_id,
     });
-
   } catch (error) {
     return res.status(500).json({
       ok: false,

@@ -7,10 +7,16 @@ import { validateJwt } from "../middleware/jwt-validate";
 const calcsRouter: Router = Router();
 
 /* Service - Get All History Calculations */
-calcsRouter.post('/get_all_history_calcs', [
+calcsRouter.post(
+  "/get_all_history_calcs",
+  [
     validateJwt,
-    check('calculation_type', 'El tipo de cálculo es obligatorio').trim().notEmpty(),
-    fieldsValidate
-], getAllHistoryCalcs);
+    check("calculation_type", "El tipo de cálculo es obligatorio")
+      .trim()
+      .notEmpty(),
+    fieldsValidate,
+  ],
+  getAllHistoryCalcs
+);
 
 export default calcsRouter;

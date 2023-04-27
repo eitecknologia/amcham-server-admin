@@ -3,7 +3,7 @@ import {
   InferCreationAttributes,
   InferAttributes,
   Model,
-  CreationOptional
+  CreationOptional,
 } from "sequelize";
 import sequelize from "../database/config";
 
@@ -63,4 +63,4 @@ const HistoryCalcs = sequelize.define<HistoryCalcsAttributes>("HistoryCalcs", {
   },
 });
 
-export { HistoryCalcs, HistoryCalcsAttributes}
+export { HistoryCalcs, HistoryCalcsAttributes };

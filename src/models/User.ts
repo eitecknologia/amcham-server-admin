@@ -3,7 +3,7 @@ import {
   InferCreationAttributes,
   InferAttributes,
   Model,
-  CreationOptional
+  CreationOptional,
 } from "sequelize";
 import sequelize from "../database/config";
 
@@ -59,4 +59,4 @@ const User = sequelize.define<UserAttributes>("User", {
   },
 });
 
-export { User, UserAttributes}
+export { User, UserAttributes };

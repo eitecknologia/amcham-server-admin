@@ -1,6 +1,6 @@
 /* Images used to send emails */
 
-const logoCompany = `https://res.cloudinary.com/db6g5aoec/image/upload/v1682021883/eiteck/LDC/emailImages/ldcIcon_bdm6je.png`;
+const logoCompany = `https://res.cloudinary.com/db6g5aoec/image/upload/v1682607696/eiteck/amcham/icono_twvg7o.png`;
 const logoEmail = `https://res.cloudinary.com/db6g5aoec/image/upload/v1657139654/eiteck/factorybike/EmailAssets/logoEmail_pkdh3v.png`;
 
 /* Send a message to email, to recover password */

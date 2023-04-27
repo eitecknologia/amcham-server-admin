@@ -1,5 +1,11 @@
 import express, { Express, Response } from "express";
-import { authRouter, testRouter, userRouter, calcsRouter, rangesRouter } from "../routes/index";
+import {
+  authRouter,
+  testRouter,
+  userRouter,
+  calcsRouter,
+  rangesRouter,
+} from "../routes/index";
 import morgan = require("morgan");
 import sequelize from "../database/config";
 import cors from "cors";
@@ -78,7 +84,7 @@ export class Server {
       };
       await dbConnection();
       console.log("Connection has been established successfully.");
-      
+
       // Create admin user if not exists
       // await createAdmin();
     } catch (error) {
@@ -91,5 +97,4 @@ export class Server {
       console.log(`Server listening at port: `, this.port);
     });
   }
-
 }

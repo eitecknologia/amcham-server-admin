@@ -3,7 +3,7 @@ import {
   InferCreationAttributes,
   InferAttributes,
   Model,
-  CreationOptional
+  CreationOptional,
 } from "sequelize";
 import sequelize from "../database/config";
 
@@ -50,7 +50,7 @@ const Range = sequelize.define<RangeAttributes>("Range", {
   can_delete: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-  }
+  },
 });
 
-export { Range, RangeAttributes}
+export { Range, RangeAttributes };
