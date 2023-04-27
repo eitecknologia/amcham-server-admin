@@ -68,7 +68,6 @@ authRouter.post(
 authRouter.post(
   "/set_new_password",
   [
-    check("user_id", "Id de usuario Obligatorio").notEmpty(),
     check("token", "Token Obligatorio").notEmpty(),
     check(
       "password",
