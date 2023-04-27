@@ -12,8 +12,8 @@ process.env.DATABASE_URL =
 process.env.TOKEN_SEED = process.env.TOKEN_SEED || "amcham" as string;
 
 /* MAIL */
-process.env.MAIL_USER = process.env.MAIL_USER || "admin@administator.com" as string;
-process.env.MAIL_PASSWORD = process.env.PASSWORD || "your_password" as string;
+process.env.MAIL_USER = process.env.MAIL_USER || "guamanc9@gmail.com" as string;
+process.env.MAIL_PASSWORD = process.env.MAIL_PASSWORD || "jwsfiuzipdtpxvew" as string;
 
 /* RESET PASSWORD */
 process.env.RESET_PASSWORD_URL =
