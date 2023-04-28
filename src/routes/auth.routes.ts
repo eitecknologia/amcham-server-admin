@@ -61,7 +61,6 @@ authRouter.put(
 authRouter.post(
   "/send_email_password",
   [
-    check("user_id", "Id de usuario Obligatorio").notEmpty(),
     check("email", "Ingrese un correo válido").isEmail(), fieldsValidate],
   recoverPassword
 );
@@ -70,6 +69,7 @@ authRouter.post(
 authRouter.post(
   "/set_new_password",
   [
+    check("user_id", "Id de usuario Obligatorio").notEmpty(),
     check("token", "Token Obligatorio").notEmpty(),
     check(
       "password",
