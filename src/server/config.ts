@@ -79,6 +79,8 @@ export class Server {
         await Promise.all([
           /* Use when the DB has been changed careful can lost data*/
           sequelize.authenticate(),
+          // await sequelize.sync(), //Use when the DB has been changed
+          /* await sequelize.sync({ alter: true }}); - When a field of model has been changed */
         ]);
       };
       await dbConnection();
@@ -97,3 +99,4 @@ export class Server {
     });
   }
 }
+

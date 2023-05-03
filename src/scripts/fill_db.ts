@@ -73,6 +73,5 @@ const Range = sequelize.define<RangeAttributes>("Range", {
 
 Range.bulkCreate(data).then(() => {
   console.log("Created");
+  sequelize.close();
 });
-
-// sequelize.close(); // close connection create an error use CTRL + C instead
