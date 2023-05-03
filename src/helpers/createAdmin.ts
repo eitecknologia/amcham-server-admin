@@ -20,7 +20,7 @@ export const createAdmin = async () => {
     const passwordEncrypt = bcrypt.hashSync(defaultPassword, salt);
 
     if (user_num === 0) {
-      console.log("Creating a administrator...");
+      console.log("Creando administrador...");
       /* Create User */
       await User.create({
         name: "Administrator",
@@ -31,10 +31,10 @@ export const createAdmin = async () => {
       });
 
       console.log(
-        `Administrator created with email: admin@admin.com and password: ${defaultPassword}`
+        `Administrador creado con email: admin@admin.com y contraseña: ${defaultPassword}`
       );
     } else {
-      console.log("Administrator already exists");
+      console.log("El administrador ya existe");
     }
   } catch (error) {
     console.log(error);

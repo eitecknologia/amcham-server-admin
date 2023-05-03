@@ -33,7 +33,7 @@ export const validateJwt = async (
     if (!user) {
       return response.status(400).json({
         ok: false,
-        msg: `Usuario o Password incorrecto`,
+        msg: `Usuario o contraseña incorrecto`,
       });
     }
 
@@ -56,7 +56,7 @@ export const validateJwt = async (
   } catch (error) {
     return response.status(401).json({
       ok: false,
-      msg: "Invalid token",
+      msg: "Token no válido",
     });
   }
 };

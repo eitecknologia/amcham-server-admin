@@ -21,7 +21,7 @@ export const getAllUsers = async (request: Request, response: Response) => {
 
     return response.status(200).json({
       ok: true,
-      msg: "Users List",
+      msg: "Lista de usuarios",
       users,
     });
   } catch (error) {
@@ -53,7 +53,7 @@ export const getMyUserInfo = async (request: Request, response: Response) => {
 
     return response.status(200).json({
       ok: true,
-      msg: "User Information",
+      msg: "Información del usuario",
       user,
     });
   } catch (error) {
@@ -95,7 +95,7 @@ export const updateUserInfo = async (request: Request, response: Response) => {
       } else {
         return response.status(500).json({
           ok: false,
-          msg: "You can't deactivate this user.",
+          msg: "No esté permitido desactivar este usuario",
         });
       }
     }
@@ -104,7 +104,7 @@ export const updateUserInfo = async (request: Request, response: Response) => {
 
     return response.status(200).json({
       ok: true,
-      msg: "User Updated",
+      msg: "Usuario actualizado",
     });
   } catch (error) {
     return response.status(500).json({
@@ -127,7 +127,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       ok: true,
-      msg: "User Deleted",
+      msg: "Usuario eliminado",
       user_id,
     });
   } catch (error) {

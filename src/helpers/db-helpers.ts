@@ -5,7 +5,7 @@ export const allowDeactivate = async (id: number) => {
   if (user !== null) {
     return user.is_admin;
   } else {
-    console.log("User not found");
+    console.log("Usuario no encontrado");
   }
 };
 
@@ -14,6 +14,6 @@ export const existUser = async (id: number) => {
   if (user !== null) {
     return true;
   } else {
-    throw new Error("User not found");
+    throw new Error("Usuario no encontrado");
   }
 };

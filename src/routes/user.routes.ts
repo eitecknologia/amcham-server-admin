@@ -29,14 +29,14 @@ userRouter.put(
       .trim()
       .notEmpty(),
     check("user_id", "El usuario no existe").custom(existUser),
-    check("name", "El nombre es string")
+    check("name", "El nombre debe ser una cadena de caracteres")
       .optional()
       .trim()
       .optional()
       .notEmpty(),
-    check("last_name", "El apellido es string").optional().trim().notEmpty(),
+    check("last_name", "El apellido debe ser una cadena de caracteres").optional().trim().notEmpty(),
     check("email", "Ingrese un correo válido").optional().trim().isEmail(),
-    check("is_active", "El estado es opcional").optional().trim().notEmpty(),
+    check("is_active", "El estado debe ser boleano").optional().trim().notEmpty(),
 
     fieldsValidate,
   ],

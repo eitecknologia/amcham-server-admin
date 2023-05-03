@@ -60,8 +60,7 @@ authRouter.put(
 /* Service - Recover password */
 authRouter.post(
   "/send_email_password",
-  [
-    check("email", "Ingrese un correo válido").isEmail(), fieldsValidate],
+  [check("email", "Ingrese un correo válido").isEmail(), fieldsValidate],
   recoverPassword
 );
 
@@ -69,11 +68,11 @@ authRouter.post(
 authRouter.post(
   "/set_new_password",
   [
-    check("user_id", "Id de usuario Obligatorio").notEmpty(),
-    check("token", "Token Obligatorio").notEmpty(),
+    check("user_id", "El id de usuario es obligatorio").notEmpty(),
+    check("token", "Token obligatorio").notEmpty(),
     check(
       "password",
-      "El password debe contener al menos 6 caracteres"
+      "La constraseña debe contener al menos 6 caracteres"
     ).isLength({ min: 6 }),
     fieldsValidate,
   ],

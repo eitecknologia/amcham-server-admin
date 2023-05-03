@@ -28,7 +28,7 @@ export const loginUser = async (request: Request, response: Response) => {
     if (!user) {
       return response.status(400).json({
         ok: false,
-        msg: `Usuario o Constraseña incorrecto`,
+        msg: `Usuario o constraseña incorrecto`,
       });
     }
 
@@ -45,7 +45,7 @@ export const loginUser = async (request: Request, response: Response) => {
     if (!validPassword) {
       return response.status(400).json({
         ok: false,
-        msg: `Usuario o Password incorrecto`,
+        msg: `Usuario o contraseña incorrecto`,
       });
     }
 
@@ -54,7 +54,7 @@ export const loginUser = async (request: Request, response: Response) => {
 
     return response.status(200).json({
       ok: true,
-      msg: "Usuario Autenticado",
+      msg: "Usuario autenticado",
       token,
     });
   } catch (error) {
@@ -99,7 +99,7 @@ export const registerUser = async (request: Request, response: Response) => {
 
     return response.status(201).json({
       ok: true,
-      msg: "User Created",
+      msg: "Usuario creado correctamente",
     });
   } catch (error) {
     console.log(error);
@@ -142,7 +142,7 @@ export const updatePassword = async (request: Request, response: Response) => {
 
     return response.status(200).json({
       ok: true,
-      msg: "Contraseña Actualizada",
+      msg: "Contraseña actualizada",
     });
   } catch (error) {
     console.log(error);
@@ -178,7 +178,7 @@ export const recoverPassword = async (request: Request, response: Response) => {
 
     const path = `${process.env.RESET_PASSWORD_URL}?user_id=${user_id}&token=${token}`;
 
-    await sendMail(email, recoverPasswordMsg(path), "Recuperar Contraseña");
+    await sendMail(email, recoverPasswordMsg(path), "Recuperar contraseña");
 
     return response.status(200).json({
       ok: true,
@@ -205,7 +205,7 @@ export const setNewPassword = async (request: Request, response: Response) => {
     const { id } = jwt.verify(
       `${token}`,
       `${process.env.TOKEN_SEED}`
-    ) as jwtPayload;    
+    ) as jwtPayload;
 
     if (id != user_id) {
       return response.status(401).json({

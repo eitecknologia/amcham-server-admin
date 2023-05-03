@@ -19,13 +19,13 @@ export const getRanges = async (request: Request, response: Response) => {
     if (!ranges) {
       return response.status(404).json({
         ok: false,
-        msg: "No se encontraron rangos",
+        msg: "No se encontraron rangos para este tipo de rango",
       });
     }
 
     return response.status(200).json({
       ok: true,
-      msg: `${range_type} Range List`,
+      msg: `Lista de rangos tipo ${range_type}`,
       ranges: ranges,
     });
   } catch (error) {
@@ -56,39 +56,32 @@ export const createRange = async (request: Request, response: Response) => {
       },
     });
 
-    console.log(previousRange);
+    // Check if from range is greater than to range
+    if (Number(from_range) > Number(to_range)) {
+      return response.status(400).json({
+        ok: false,
+        msg: `"HASTA no puede ser menor a "DESDE" en el rango`,
+      });
+    }
 
     if (previousRange) {
       if (previousRange.to_range > from_range) {
         return response.status(400).json({
           ok: false,
-          msg: "El rango desde no puede ser menor al rango hasta anterior",
-        });
-      } else if (Number(from_range) > Number(to_range)) {
-        return response.status(400).json({
-          ok: false,
-          msg: "Hasta no puede ser menor a desde en el rango",
+          msg: `El valor "DESDE" no puede ser menor al valor "HASTA" del rango anterior`,
         });
       } else if (base < 0) {
         return response.status(400).json({
           ok: false,
-          msg: "La base no puede ser menor a 0",
+          msg: "La BASE no puede ser menor a 0",
         });
       } else if (excess_percentage < 0) {
         return response.status(400).json({
           ok: false,
-          msg: "El porcentaje de exceso no puede ser menor a 0",
+          msg: "El PORCENTAJE DE EXCESO no puede ser menor a 0",
         });
       } else {
       }
-    }
-
-    // Check if from range is greater than to range
-    if (Number(from_range) > Number(to_range)) {
-      return response.status(400).json({
-        ok: false,
-        msg: "Hasta no puede ser menor a desde en el rango",
-      });
     }
 
     // Create Range
@@ -110,7 +103,7 @@ export const createRange = async (request: Request, response: Response) => {
 
     return response.status(201).json({
       ok: true,
-      msg: "Range Created",
+      msg: "Rango creado exitosamente",
       range: range,
     });
   } catch (error) {
@@ -159,33 +152,32 @@ export const updateRange = async (request: Request, response: Response) => {
     } else {
       return response.status(404).json({
         ok: false,
-        msg: "Range Not Found",
+        msg: "Rango no encontrado",
       });
     }
 
     if (from_range > to_range) {
       return response.status(400).json({
         ok: false,
-        msg: "Hasta no puede ser menor a desde en el rango",
+        msg: `"HASTA no puede ser menor a "DESDE" en el rango`,
       });
     } else if (base < 0) {
       return response.status(400).json({
         ok: false,
-        msg: "La base no puede ser menor a 0",
+        msg: "La BASE no puede ser menor a 0",
       });
     } else if (excess_percentage < 0) {
       return response.status(400).json({
         ok: false,
-        msg: "El porcentaje de exceso no puede ser menor a 0",
+        msg: "El PORCENTAJE DE EXCESO no puede ser menor a 0",
       });
-    } else {
     }
 
     if (previousRange && from_range) {
       if (from_range < previousRange.from_range + 5) {
         return response.status(400).json({
           ok: false,
-          msg: "El rango desde no puede ser menor al rango desde anterior minimo 5 entre rangos",
+          msg: `El valor "DESDE" no puede ser menor al valor "DESDE" del rango anterior, el valor mínimo entre rangos es 5.`,
         });
       } else {
         previousRange.to_range = from_range - 0.1;
@@ -197,7 +189,7 @@ export const updateRange = async (request: Request, response: Response) => {
       if (to_range > nextRange.to_range - 5) {
         return response.status(400).json({
           ok: false,
-          msg: "El rango hasta no puede ser mayor al rango hasta siguiente minimo 5 entre rangos",
+          msg: `El valor "HASTA" no puede ser mayor al valor "HASTA" del siguiente rango, el valor mínimo entre rangos es 5.`,
         });
       } else {
         nextRange.from_range = Number(to_range) + 0.1;
@@ -217,7 +209,7 @@ export const updateRange = async (request: Request, response: Response) => {
 
     return response.status(200).json({
       ok: true,
-      msg: "Range Updated",
+      msg: "Rango actualizado exitosamente",
       range: currentRange,
     });
   } catch (error) {
@@ -248,7 +240,7 @@ export const deleteRange = async (request: Request, response: Response) => {
     } else {
       return response.status(404).json({
         ok: false,
-        msg: "Range Not Found",
+        msg: "Rango no encontrado",
       });
     }
 
@@ -256,7 +248,7 @@ export const deleteRange = async (request: Request, response: Response) => {
     if (!currentRange.can_delete) {
       return response.status(400).json({
         ok: false,
-        msg: "No se puede eliminar el rango",
+        msg: "No se puede eliminar el rango, elimine el último rango primero.",
       });
     }
 
