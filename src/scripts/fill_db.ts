@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 import * as data from "./ranges.json";
 
-// To run this script use: npm run fill_db, it will create a js file
-
 // This script creates the ranges table and fill it with the data from ranges.json
+// The database must be empty, otherwise it will store the data twice
+// To run this script use: npm run fill_db, it will create a js file
 const sequelize = new Sequelize(
   "postgresql://postgres:N9BaDJO5aYmruvEftKGF@containers-us-west-72.railway.app:5890/amcham",
   {

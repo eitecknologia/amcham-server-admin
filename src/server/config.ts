@@ -13,7 +13,6 @@ import cors from "cors";
 export class Server {
   public app: Express;
   public port: string;
-  // public prefix = "/api/";
   public paths: {
     testServer: string;
     user: string;
@@ -25,6 +24,7 @@ export class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT!;
+    // Paths of the routes
     this.paths = {
       testServer: "/",
       user: "/user",
@@ -99,4 +99,3 @@ export class Server {
     });
   }
 }
-

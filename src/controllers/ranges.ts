@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Range, RangeAttributes } from "../models";
 import { Op } from "sequelize";
 
-// Get all ranges function
+// Get all ranges by range_type
 export const getRanges = async (request: Request, response: Response) => {
   try {
     const { range_type }: Partial<RangeAttributes> = request.query;
@@ -37,7 +37,7 @@ export const getRanges = async (request: Request, response: Response) => {
   }
 };
 
-// Create Range function
+// Create Range
 export const createRange = async (request: Request, response: Response) => {
   try {
     const {
@@ -64,17 +64,21 @@ export const createRange = async (request: Request, response: Response) => {
       });
     }
 
+
     if (previousRange) {
+      // Check if  previous range to_range is greater than current range from_range
       if (previousRange.to_range > from_range) {
         return response.status(400).json({
           ok: false,
           msg: `El valor "DESDE" no puede ser menor al valor "HASTA" del rango anterior`,
         });
+      // Check if base is negative
       } else if (base < 0) {
         return response.status(400).json({
           ok: false,
           msg: "La BASE no puede ser menor a 0",
         });
+      // Check if excess_percentage is negative
       } else if (excess_percentage < 0) {
         return response.status(400).json({
           ok: false,
@@ -115,6 +119,7 @@ export const createRange = async (request: Request, response: Response) => {
   }
 };
 
+// Update Range by range_id
 export const updateRange = async (request: Request, response: Response) => {
   try {
     const { range_id }: Partial<RangeAttributes> = request.params;
@@ -132,7 +137,7 @@ export const updateRange = async (request: Request, response: Response) => {
     });
 
     if (currentRange) {
-      // Find the previous range
+      // Find the previous range to validate the from_range
       previousRange = await Range.findOne({
         where: {
           range_type: currentRange.range_type,
@@ -141,7 +146,7 @@ export const updateRange = async (request: Request, response: Response) => {
         order: [["to_range", "DESC"]],
       });
 
-      // Find the next range
+      // Find the next range to validate the to_range
       nextRange = await Range.findOne({
         where: {
           range_type: currentRange.range_type,
@@ -157,16 +162,19 @@ export const updateRange = async (request: Request, response: Response) => {
     }
 
     if (from_range > to_range) {
+      // Check if from range is greater than to range
       return response.status(400).json({
         ok: false,
         msg: `"HASTA no puede ser menor a "DESDE" en el rango`,
       });
     } else if (base < 0) {
+      // Check if base is negative
       return response.status(400).json({
         ok: false,
         msg: "La BASE no puede ser menor a 0",
       });
     } else if (excess_percentage < 0) {
+      // Check if excess_percentage is negative
       return response.status(400).json({
         ok: false,
         msg: "El PORCENTAJE DE EXCESO no puede ser menor a 0",
@@ -174,6 +182,7 @@ export const updateRange = async (request: Request, response: Response) => {
     }
 
     if (previousRange && from_range) {
+      // Check if previousRange exists and from_range exists
       if (from_range < previousRange.from_range + 5) {
         return response.status(400).json({
           ok: false,
@@ -186,6 +195,7 @@ export const updateRange = async (request: Request, response: Response) => {
     }
 
     if (nextRange && to_range) {
+      // Check if nextRange exists and to_range exists
       if (to_range > nextRange.to_range - 5) {
         return response.status(400).json({
           ok: false,
@@ -197,7 +207,7 @@ export const updateRange = async (request: Request, response: Response) => {
       }
     }
 
-    // Update Range
+    // Update range
     const updates: Partial<RangeAttributes> = {};
 
     if (from_range) updates.from_range = from_range;
@@ -221,10 +231,12 @@ export const updateRange = async (request: Request, response: Response) => {
   }
 };
 
+// Delete Range by range_id
 export const deleteRange = async (request: Request, response: Response) => {
   try {
     const { range_id }: Partial<RangeAttributes> = request.params;
 
+    // Get current range
     const currentRange = await Range.findByPk(range_id);
 
     let previousRange: RangeAttributes | null = null;

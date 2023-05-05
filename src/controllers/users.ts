@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { User, UserAttributes } from "../models";
 import { allowDeactivate } from "../helpers/db-helpers";
 
-/* Get all users function*/
+/* Get all users*/
 export const getAllUsers = async (request: Request, response: Response) => {
   try {
     const { rows: users } = await User.findAndCountAll({
@@ -115,7 +115,7 @@ export const updateUserInfo = async (request: Request, response: Response) => {
   }
 };
 
-/* Delete User Function*/
+/* Delete user*/
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     // Get user id from params

@@ -138,3 +138,5 @@ export const recoverPasswordMsg = (pathEmail: string) => {
         </div>  
        </body>`;
 };
+
+// export const calculationMsg = ({name, email, company_name, phone_number, calculation_type, consulted_amount, result, date}) => {};

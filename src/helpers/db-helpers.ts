@@ -1,11 +1,12 @@
 import { User } from "../models/User";
 
+// Validate if user can be deactivated
 export const allowDeactivate = async (id: number) => {
   const user = await User.findOne({ where: { user_id: id } });
   if (user !== null) {
     return user.is_admin;
   } else {
-    console.log("Usuario no encontrado");
+    console.log("No permitido");
   }
 };
 

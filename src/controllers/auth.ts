@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
 import { User, UserAttributes } from "../models";
 import bcrypt from "bcrypt";
-
 import { generateJwt } from "../helpers/generate-jwt";
 import { sendMail } from "../helpers/send-mail";
 import { recoverPasswordMsg } from "../helpers/msgEmail";
-
 import jwt from "jsonwebtoken";
+
 /* Login User */
 export const loginUser = async (request: Request, response: Response) => {
   try {
@@ -66,10 +65,10 @@ export const loginUser = async (request: Request, response: Response) => {
   }
 };
 
-/* Register user Function */
+/* Register user */
 export const registerUser = async (request: Request, response: Response) => {
   try {
-    /* Geth the data of body */
+
     const { name, last_name, email, password }: UserAttributes = request.body;
 
     /* Verify if exists a user with the same email*/
@@ -111,7 +110,7 @@ export const registerUser = async (request: Request, response: Response) => {
   }
 };
 
-// Update Password Function when user is logged
+// Update Password when user is logged
 export const updatePassword = async (request: Request, response: Response) => {
   try {
     const { currentPassword, password } = request.body;
@@ -134,10 +133,11 @@ export const updatePassword = async (request: Request, response: Response) => {
       });
     }
 
-    /* Encrypt Password */
+    /* Encrypt password */
     const salt = bcrypt.genSaltSync();
     const passwordEncrypt = bcrypt.hashSync(password, salt);
 
+    /* Update password */
     await user?.update({ password: passwordEncrypt });
 
     return response.status(200).json({
@@ -154,7 +154,7 @@ export const updatePassword = async (request: Request, response: Response) => {
   }
 };
 
-// Recover Password Function used when user forgot password
+// Recover password used when user forgot password
 export const recoverPassword = async (request: Request, response: Response) => {
   try {
     const { email } = request.body;
@@ -176,8 +176,10 @@ export const recoverPassword = async (request: Request, response: Response) => {
     /* Generate JWT */
     const token = await generateJwt(user_id);
 
+    // Create path to send in email
     const path = `${process.env.RESET_PASSWORD_URL}?user_id=${user_id}&token=${token}`;
 
+    /* Send email */
     await sendMail(email, recoverPasswordMsg(path), "Recuperar contraseña");
 
     return response.status(200).json({
@@ -194,7 +196,7 @@ export const recoverPassword = async (request: Request, response: Response) => {
   }
 };
 
-// Set new password Function when user recover password using the link sent to email
+// Set new password when user recover password using the link sent to email
 export const setNewPassword = async (request: Request, response: Response) => {
   interface jwtPayload {
     id: string;
@@ -202,11 +204,13 @@ export const setNewPassword = async (request: Request, response: Response) => {
   try {
     let { user_id, token, password } = request.body;
 
+    /* Verify token */
     const { id } = jwt.verify(
       `${token}`,
       `${process.env.TOKEN_SEED}`
     ) as jwtPayload;
 
+    // Verify if the user_id is the same as the token
     if (id != user_id) {
       return response.status(401).json({
         ok: false,
@@ -214,9 +218,11 @@ export const setNewPassword = async (request: Request, response: Response) => {
       });
     }
 
+    /* Encrypt password */
     const salt = bcrypt.genSaltSync();
     password = bcrypt.hashSync(password, salt);
 
+    /* Update password */
     await User.update(
       {
         password,

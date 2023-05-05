@@ -16,6 +16,7 @@ export const getAllHistoryCalcs = async (
       size
     );
 
+    /* Get all calculations */
     const { count: total, rows: calculations } =
       await HistoryCalcs.findAndCountAll({
         attributes: [

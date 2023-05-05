@@ -7,6 +7,7 @@ interface jwtPayload {
   id: string;
 }
 
+// Validate JWT
 export const validateJwt = async (
   request: Request,
   response: Response,

@@ -23,7 +23,7 @@ authRouter.post(
   loginUser
 );
 
-// Route - create user - POST - /api/user/create
+/* Service - Create user */
 authRouter.post(
   "/create",
   [
@@ -41,7 +41,7 @@ authRouter.post(
   registerUser
 );
 
-/* Service - Recover password */
+/* Service - Update password */
 authRouter.put(
   "/update_password",
   [

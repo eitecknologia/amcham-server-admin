@@ -13,13 +13,13 @@ import { existUser } from "../helpers/db-helpers";
 
 const userRouter: Router = Router();
 
-// Route - get all users - GET - /api/user/get_all
+// Service - Get all users
 userRouter.get("/get_all", [validateJwt, isAdminUser], getAllUsers);
 
-// Route - get my user info - GET - /api/user/get_my_info
+// Service - Get my user info
 userRouter.get("/get_my_info", [validateJwt], getMyUserInfo);
 
-// Route - update user - PUT - /api/user/update/:user_id
+// Service - Update user info
 userRouter.put(
   "/update/",
   [
@@ -34,16 +34,22 @@ userRouter.put(
       .trim()
       .optional()
       .notEmpty(),
-    check("last_name", "El apellido debe ser una cadena de caracteres").optional().trim().notEmpty(),
+    check("last_name", "El apellido debe ser una cadena de caracteres")
+      .optional()
+      .trim()
+      .notEmpty(),
     check("email", "Ingrese un correo válido").optional().trim().isEmail(),
-    check("is_active", "El estado debe ser boleano").optional().trim().notEmpty(),
+    check("is_active", "El estado debe ser boleano")
+      .optional()
+      .trim()
+      .notEmpty(),
 
     fieldsValidate,
   ],
   updateUserInfo
 );
 
-// Route - delete user - DELETE - /api/user/delete/:user_id
+// Service - Delete user
 userRouter.delete(
   "/delete/:user_id",
   [
