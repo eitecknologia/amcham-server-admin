@@ -90,7 +90,7 @@
     {
         "range_type": "MEDIATION",
         "from_range": 512000,
-        "to_range": 1000000.99,
+        "to_range": 900000000.99,
         "base": 5969.6,
         "excess_percentage": 1,
         "can_delete": true
@@ -186,7 +186,7 @@
     {
         "range_type": "ARBITRATION_ONE",
         "from_range": 32768000,
-        "to_range": 40000000,
+        "to_range": 900000000.99,
         "base": 492540,
         "excess_percentage": 1,
         "can_delete": true
@@ -282,7 +282,7 @@
     {
         "range_type": "ARBITRATION_THREE",
         "from_range": 32768000,
-        "to_range": 40000000,
+        "to_range": 900000000.99,
         "base": 591020,
         "excess_percentage": 1.25,
         "can_delete": true
